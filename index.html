@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Solar System Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    
+    <!-- Mission Control Panel -->
+    <div class="mission-control">
+        <div class="panel-header">
+            <h2>MISSION CONTROL</h2>
+            <button id="togglePanel" class="minimize-btn">−</button>
+        </div>
+        
+        <div class="panel-content">
+            <!-- Speed Control -->
+            <div class="control-group">
+                <label>SPEED (Earth Time)</label>
+                <div class="slider-container">
+                    <input type="range" id="speedSlider" min="0.1" max="5" step="0.1" value="1">
+                    <span id="speedDisplay">1.0x</span>
+                </div>
+            </div>
+
+            <!-- Zoom Control -->
+            <div class="control-group">
+                <label>ZOOM</label>
+                <div class="slider-container">
+                    <input type="range" id="zoomSlider" min="0.5" max="5" step="0.1" value="1">
+                    <span id="zoomDisplay">1.0x</span>
+                </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="button-group">
+                <button id="pausePlayBtn" class="btn btn-primary">PLAY</button>
+                <button id="resetBtn" class="btn btn-secondary">RESET</button>
+            </div>
+
+            <!-- Toggle Options -->
+            <div class="toggle-group">
+                <label>
+                    <input type="checkbox" id="showOrbits" checked>
+                    SHOW ORBITS
+                </label>
+                <label>
+                    <input type="checkbox" id="showLabels" checked>
+                    SHOW LABELS
+                </label>
+                <label>
+                    <input type="checkbox" id="showTrails">
+                    SHOW TRAILS
+                </label>
+            </div>
+
+            <!-- Follow Mode -->
+            <div class="follow-mode">
+                <label for="followselect">FOLLOW PLANET:</label>
+                <select id="followselect">
+                    <option value="">None</option>
+                    <option value="Mercury">Mercury</option>
+                    <option value="Venus">Venus</option>
+                    <option value="Earth">Earth</option>
+                    <option value="Mars">Mars</option>
+                    <option value="Jupiter">Jupiter</option>
+                    <option value="Saturn">Saturn</option>
+                    <option value="Uranus">Uranus</option>
+                    <option value="Neptune">Neptune</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Celestial Bodies Info Panel -->
+    <div class="celestial-bodies">
+        <div class="panel-header">
+            <h2>CELESTIAL BODIES</h2>
+            <button id="toggleBodies" class="minimize-btn">−</button>
+        </div>
+        
+        <div class="bodies-content">
+            <div class="body-list" id="bodyList"></div>
+        </div>
+    </div>
+
+    <!-- Info Panel for Planet Details -->
+    <div id="infoPanel" class="info-panel hidden">
+        <button class="close-btn">&times;</button>
+        <div class="info-content">
+            <h3 id="infoName">Planet Name</h3>
+            <div class="info-details">
+                <div class="info-row">
+                    <span>Distance from Sun:</span>
+                    <span id="infoDist">0 AU</span>
+                </div>
+                <div class="info-row">
+                    <span>Orbital Speed:</span>
+                    <span id="infoSpeed">0 km/s</span>
+                </div>
+                <div class="info-row">
+                    <span>Size:</span>
+                    <span id="infoSize">0 km</span>
+                </div>
+                <div class="info-row">
+                    <span>Orbital Period:</span>
+                    <span id="infoPeriod">0 days</span>
+                </div>
+                <div class="info-row">
+                    <span>Mass:</span>
+                    <span id="infoMass">0 Earths</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Info -->
+    <div class="nav-info">
+        <div class="info-text">Click planets for details • Scroll to zoom • Middle-click drag to pan</div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
